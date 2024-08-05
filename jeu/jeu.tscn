@@ -1,0 +1,80 @@
+[gd_scene load_steps=10 format=3 uid="uid://cdw6fje6161go"]
+
+[ext_resource type="Script" path="res://jeu/Jeu.gd" id="1_qmfqb"]
+[ext_resource type="PackedScene" uid="uid://p0p1fex3yj6f" path="res://jeu/fond.tscn" id="2_rn65f"]
+[ext_resource type="PackedScene" uid="uid://d0p7ejpc4nd2n" path="res://joueur/joueur.tscn" id="2_sevkw"]
+[ext_resource type="PackedScene" uid="uid://dj6j72ewlk37p" path="res://jeu/ui.tscn" id="3_8pa11"]
+[ext_resource type="PackedScene" uid="uid://b2d4ciwu0nqst" path="res://jeu/devant.tscn" id="3_r4hjj"]
+[ext_resource type="Script" path="res://jeu/PauseMenu.gd" id="4_rdx4n"]
+[ext_resource type="AudioStream" uid="uid://j05paqqj3310" path="res://sons/Son_grognement.mp3" id="5_kkjtr"]
+[ext_resource type="AudioStream" uid="uid://ehnilb2n5ywh" path="res://sons/Preston Uppon la mi re - Download free sheet music.mp3" id="5_o37yw"]
+[ext_resource type="AudioStream" uid="uid://uxppyxcft4es" path="res://sons/Son_miaou.mp3" id="6_rak85"]
+
+[node name="Jeu" type="Node"]
+script = ExtResource("1_qmfqb")
+
+[node name="Fond" parent="." instance=ExtResource("2_rn65f")]
+offset = Vector2(0, -200)
+transform = Transform2D(1, 0, 0, 1, 0, -200)
+
+[node name="Devant" parent="." instance=ExtResource("3_r4hjj")]
+offset = Vector2(0, 550)
+transform = Transform2D(1, 0, 0, 1, 0, 550)
+
+[node name="PorteNiveau" type="Node2D" parent="."]
+position = Vector2(0, 400)
+
+[node name="Joueur" parent="." instance=ExtResource("2_sevkw")]
+scale = Vector2(0.6, 0.6)
+
+[node name="Camera2D" type="Camera2D" parent="Joueur"]
+offset = Vector2(0, -80)
+limit_left = -100
+limit_top = -480
+limit_bottom = 700
+
+[node name="UI" parent="." instance=ExtResource("3_8pa11")]
+unique_name_in_owner = true
+
+[node name="PauseMenu" type="CanvasLayer" parent="."]
+process_mode = 2
+script = ExtResource("4_rdx4n")
+
+[node name="ColorRect" type="ColorRect" parent="PauseMenu"]
+offset_left = -8.0
+offset_top = -6.0
+offset_right = 809.0
+offset_bottom = 609.0
+color = Color(0, 0, 0, 0.470588)
+
+[node name="RichTextLabel" type="RichTextLabel" parent="PauseMenu"]
+offset_left = 148.0
+offset_top = 149.0
+offset_right = 655.0
+offset_bottom = 508.0
+theme_override_colors/default_color = Color(1, 0.929412, 0.670588, 1)
+bbcode_enabled = true
+text = "pause"
+
+[node name="Perdu" type="AudioStreamPlayer" parent="PauseMenu"]
+stream = ExtResource("5_kkjtr")
+volume_db = -3.0
+
+[node name="Gagne" type="AudioStreamPlayer" parent="PauseMenu"]
+stream = ExtResource("6_rak85")
+
+[node name="Transition" type="CanvasLayer" parent="."]
+
+[node name="ColorRect" type="ColorRect" parent="Transition"]
+offset_left = -11.0
+offset_top = -11.0
+offset_right = 813.0
+offset_bottom = 613.0
+color = Color(0, 0, 0, 1)
+
+[node name="UpponLaMiRe" type="AudioStreamPlayer" parent="."]
+process_mode = 3
+stream = ExtResource("5_o37yw")
+
+[connection signal="lancer_musique" from="Joueur" to="." method="_on_joueur_lancer_musique"]
+[connection signal="tombe_dans_trou" from="Joueur" to="." method="_on_joueur_tombe_dans_trou"]

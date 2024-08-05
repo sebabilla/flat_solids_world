@@ -1,0 +1,85 @@
+[gd_scene load_steps=3 format=3 uid="uid://dj6j72ewlk37p"]
+
+[ext_resource type="Texture2D" uid="uid://5yoh4iuy2led" path="res://images/triangle_blanc.png" id="1_dic7l"]
+[ext_resource type="Script" path="res://jeu/ui.gd" id="1_o2jlp"]
+
+[node name="UI" type="CanvasLayer"]
+script = ExtResource("1_o2jlp")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+offset_right = 810.0
+offset_bottom = 125.0
+color = Color(0, 0, 0, 0.470588)
+
+[node name="PyramideDeVie" type="Node2D" parent="."]
+position = Vector2(738, 53)
+rotation = 0.523599
+scale = Vector2(0.5, 0.5)
+
+[node name="TriangleBlanc" type="Sprite2D" parent="PyramideDeVie"]
+texture = ExtResource("1_dic7l")
+metadata/_edit_lock_ = true
+
+[node name="TriangleBlanc2" type="Sprite2D" parent="PyramideDeVie"]
+position = Vector2(14, -25)
+rotation = 1.0472
+texture = ExtResource("1_dic7l")
+metadata/_edit_lock_ = true
+
+[node name="TriangleBlanc3" type="Sprite2D" parent="PyramideDeVie"]
+position = Vector2(14, 40)
+rotation = 1.0472
+texture = ExtResource("1_dic7l")
+metadata/_edit_lock_ = true
+
+[node name="TriangleBlanc4" type="Sprite2D" parent="PyramideDeVie"]
+position = Vector2(-54, 0)
+rotation = 3.14159
+texture = ExtResource("1_dic7l")
+metadata/_edit_lock_ = true
+
+[node name="CodeJoueur" type="Node2D" parent="."]
+position = Vector2(59, 17)
+scale = Vector2(0.4, 0.4)
+
+[node name="TriangleBlanc" type="Sprite2D" parent="CodeJoueur"]
+texture = ExtResource("1_dic7l")
+metadata/_edit_lock_ = true
+
+[node name="TriangleBlanc2" type="Sprite2D" parent="CodeJoueur"]
+position = Vector2(0, 55)
+texture = ExtResource("1_dic7l")
+metadata/_edit_lock_ = true
+
+[node name="TriangleBlanc3" type="Sprite2D" parent="CodeJoueur"]
+position = Vector2(0, 110)
+texture = ExtResource("1_dic7l")
+metadata/_edit_lock_ = true
+
+[node name="TriangleBlanc4" type="Sprite2D" parent="CodeJoueur"]
+position = Vector2(0, 165)
+texture = ExtResource("1_dic7l")
+metadata/_edit_lock_ = true
+
+[node name="TriangleBlanc5" type="Sprite2D" parent="CodeJoueur"]
+position = Vector2(0, 220)
+texture = ExtResource("1_dic7l")
+metadata/_edit_lock_ = true
+
+[node name="Temps" type="RichTextLabel" parent="."]
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -133.0
+offset_top = 30.0
+offset_right = 135.0
+offset_bottom = 60.0
+grow_horizontal = 2
+theme_override_colors/default_color = Color(1, 0.929, 0.671, 1)
+text = "Temps"
+
+[node name="TimerNiveau" type="Timer" parent="."]
+wait_time = 60.0
+one_shot = true
+
+[connection signal="timeout" from="TimerNiveau" to="." method="_on_timer_niveau_timeout"]

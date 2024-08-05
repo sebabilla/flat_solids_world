@@ -1,0 +1,14 @@
+[gd_scene load_steps=2 format=3 uid="uid://b2d4ciwu0nqst"]
+
+[ext_resource type="Texture2D" uid="uid://dku187nvs5cw5" path="res://images/devant.png" id="1_0qojj"]
+
+[node name="Devant" type="ParallaxBackground"]
+layer = 100
+
+[node name="ParallaxLayer" type="ParallaxLayer" parent="."]
+motion_scale = Vector2(1.2, 1)
+motion_mirroring = Vector2(1200, 0)
+
+[node name="Sprite2D" type="Sprite2D" parent="ParallaxLayer"]
+position = Vector2(300, 0)
+texture = ExtResource("1_0qojj")

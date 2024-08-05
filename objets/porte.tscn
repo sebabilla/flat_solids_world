@@ -1,0 +1,69 @@
+[gd_scene load_steps=7 format=3 uid="uid://bg2ebw3digam8"]
+
+[ext_resource type="Script" path="res://objets/porte.gd" id="1_hma0t"]
+[ext_resource type="Texture2D" uid="uid://cxpjvtkk088sq" path="res://images/icosaedre_porte.png" id="2_48frq"]
+[ext_resource type="Texture2D" uid="uid://5yoh4iuy2led" path="res://images/triangle_blanc.png" id="3_v1lhk"]
+[ext_resource type="AudioStream" uid="uid://dxm4cuvg6rg50" path="res://sons/cloche.mp3" id="4_pmpxl"]
+[ext_resource type="AudioStream" uid="uid://ck1yjy75kxj1u" path="res://sons/mur.mp3" id="5_ao8s4"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_a5cka"]
+size = Vector2(97, 345)
+
+[node name="Porte" type="StaticBody2D"]
+collision_layer = 16
+collision_mask = 3
+script = ExtResource("1_hma0t")
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
+polygon = PackedVector2Array(44, 145, 82, 144, 83, -111, -28, -174, -27, 175, 42, 175)
+
+[node name="SpritePorte" type="Sprite2D" parent="."]
+texture = ExtResource("2_48frq")
+metadata/_edit_lock_ = true
+
+[node name="CodeTriangles" type="Node2D" parent="."]
+
+[node name="TriangleBlanc0" type="Sprite2D" parent="CodeTriangles"]
+visible = false
+position = Vector2(54, -111)
+texture = ExtResource("3_v1lhk")
+metadata/_edit_lock_ = true
+
+[node name="TriangleBlanc1" type="Sprite2D" parent="CodeTriangles"]
+visible = false
+position = Vector2(54, -48)
+texture = ExtResource("3_v1lhk")
+metadata/_edit_lock_ = true
+
+[node name="TriangleBlanc2" type="Sprite2D" parent="CodeTriangles"]
+visible = false
+position = Vector2(54, 16)
+texture = ExtResource("3_v1lhk")
+metadata/_edit_lock_ = true
+
+[node name="TriangleBlanc3" type="Sprite2D" parent="CodeTriangles"]
+visible = false
+position = Vector2(54, 80)
+texture = ExtResource("3_v1lhk")
+metadata/_edit_lock_ = true
+
+[node name="TriangleBlanc4" type="Sprite2D" parent="CodeTriangles"]
+visible = false
+position = Vector2(54, 143)
+texture = ExtResource("3_v1lhk")
+metadata/_edit_lock_ = true
+
+[node name="InteractionJoueur" type="Area2D" parent="."]
+collision_layer = 32
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="InteractionJoueur"]
+position = Vector2(104.5, 1.5)
+shape = SubResource("RectangleShape2D_a5cka")
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("4_pmpxl")
+
+[node name="AudioStreamPlayer2" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("5_ao8s4")
+
+[connection signal="body_entered" from="InteractionJoueur" to="." method="_on_interaction_joueur_body_entered"]

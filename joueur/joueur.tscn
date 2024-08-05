@@ -1,0 +1,93 @@
+[gd_scene load_steps=14 format=3 uid="uid://d0p7ejpc4nd2n"]
+
+[ext_resource type="Script" path="res://joueur/Joueur.gd" id="1_nlb5v"]
+[ext_resource type="Texture2D" uid="uid://dp1eipi8hd1jq" path="res://images/cone_joueur.png" id="2_peccm"]
+[ext_resource type="AudioStream" uid="uid://db12glfm7kqpi" path="res://sons/impact.mp3" id="3_hm0cw"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ghw00"]
+atlas = ExtResource("2_peccm")
+region = Rect2(0, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_htnvo"]
+atlas = ExtResource("2_peccm")
+region = Rect2(64, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_611va"]
+atlas = ExtResource("2_peccm")
+region = Rect2(128, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_aaiha"]
+atlas = ExtResource("2_peccm")
+region = Rect2(192, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_72j1d"]
+atlas = ExtResource("2_peccm")
+region = Rect2(256, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_nnl7c"]
+atlas = ExtResource("2_peccm")
+region = Rect2(320, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4i1yl"]
+atlas = ExtResource("2_peccm")
+region = Rect2(384, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5giwf"]
+atlas = ExtResource("2_peccm")
+region = Rect2(448, 0, 64, 64)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_fd2ok"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ghw00")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_htnvo")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_611va")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_aaiha")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_72j1d")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_nnl7c")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4i1yl")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5giwf")
+}],
+"loop": true,
+"name": &"default",
+"speed": 10.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_2n7gm"]
+size = Vector2(50, 66)
+
+[node name="Joueur" type="CharacterBody2D"]
+collision_mask = 50
+script = ExtResource("1_nlb5v")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_fd2ok")
+autoplay = "default"
+frame_progress = 0.938928
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_2n7gm")
+
+[node name="TimerIntouchable" type="Timer" parent="."]
+wait_time = 0.5
+one_shot = true
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_hm0cw")
+
+[connection signal="timeout" from="TimerIntouchable" to="." method="_on_timer_intouchable_timeout"]

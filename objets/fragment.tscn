@@ -1,0 +1,23 @@
+[gd_scene load_steps=4 format=3 uid="uid://w4w2iywrlmiq"]
+
+[ext_resource type="Texture2D" uid="uid://5yoh4iuy2led" path="res://images/triangle_blanc.png" id="1_iivig"]
+[ext_resource type="Script" path="res://objets/fragment.gd" id="1_p863e"]
+[ext_resource type="AudioStream" uid="uid://63qclkkemq84" path="res://sons/grignote2.mp3" id="3_f0bxc"]
+
+[node name="Fragment" type="Area2D"]
+scale = Vector2(0.5, 0.5)
+collision_layer = 32
+script = ExtResource("1_p863e")
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
+position = Vector2(6, 0)
+polygon = PackedVector2Array(-26, 32, -26, -31, 27, 0)
+
+[node name="TriangleBlanc" type="Sprite2D" parent="."]
+position = Vector2(6, 0)
+texture = ExtResource("1_iivig")
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_f0bxc")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

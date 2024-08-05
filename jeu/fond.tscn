@@ -1,0 +1,27 @@
+[gd_scene load_steps=3 format=3 uid="uid://p0p1fex3yj6f"]
+
+[ext_resource type="Texture2D" uid="uid://dhagjbocti0fe" path="res://images/fond_montagnes2.png" id="1_07bw6"]
+[ext_resource type="Texture2D" uid="uid://dlcocjwb56v5a" path="res://images/fond_montagnes.png" id="2_rf6qm"]
+
+[node name="Fond" type="ParallaxBackground"]
+
+[node name="Ciel" type="ParallaxLayer" parent="."]
+motion_scale = Vector2(0.4, 0.2)
+motion_mirroring = Vector2(800, 0)
+
+[node name="TextureRect" type="TextureRect" parent="Ciel"]
+offset_right = 40.0
+offset_bottom = 40.0
+texture = ExtResource("1_07bw6")
+stretch_mode = 1
+
+[node name="Montagne" type="ParallaxLayer" parent="."]
+motion_scale = Vector2(0.6, 0.3)
+motion_mirroring = Vector2(960, 0)
+
+[node name="TextureRect" type="TextureRect" parent="Montagne"]
+offset_top = -20.0
+offset_right = 960.0
+offset_bottom = 880.0
+texture = ExtResource("2_rf6qm")
+stretch_mode = 1

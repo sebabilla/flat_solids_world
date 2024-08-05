@@ -1,0 +1,92 @@
+[gd_scene load_steps=12 format=3 uid="uid://d1pqoivkwwluy"]
+
+[ext_resource type="Script" path="res://ennemis/escargot.gd" id="1_blytd"]
+[ext_resource type="Texture2D" uid="uid://2332gm1ikr8d" path="res://images/pyramide_escargot.png" id="2_etp17"]
+[ext_resource type="AudioStream" uid="uid://dturvh3kg0fhr" path="res://sons/pong.mp3" id="3_vb2ys"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_ou5jf"]
+radius = 8.0
+height = 58.0
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jy8vu"]
+atlas = ExtResource("2_etp17")
+region = Rect2(0, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mg6nl"]
+atlas = ExtResource("2_etp17")
+region = Rect2(64, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_owi0f"]
+atlas = ExtResource("2_etp17")
+region = Rect2(128, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_k74hs"]
+atlas = ExtResource("2_etp17")
+region = Rect2(192, 0, 64, 64)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_pj71p"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jy8vu")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_mg6nl")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_owi0f")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_k74hs")
+}],
+"loop": true,
+"name": &"default",
+"speed": 2.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_y4m5i"]
+radius = 13.0384
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_8vjmr"]
+radius = 13.0
+height = 48.0
+
+[node name="Escargot" type="CharacterBody2D" groups=["ennemis"]]
+collision_layer = 8
+collision_mask = 16
+script = ExtResource("1_blytd")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_ou5jf")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_pj71p")
+autoplay = "default"
+frame_progress = 0.0255192
+
+[node name="Tete" type="Area2D" parent="."]
+collision_layer = 8
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Tete"]
+position = Vector2(-18, -1)
+shape = SubResource("CircleShape2D_y4m5i")
+
+[node name="Carapace" type="Area2D" parent="."]
+collision_layer = 8
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Carapace"]
+position = Vector2(11, 0)
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_8vjmr")
+
+[node name="TimerIntouchable" type="Timer" parent="."]
+wait_time = 0.5
+one_shot = true
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_vb2ys")
+
+[connection signal="body_entered" from="Tete" to="." method="_on_tete_body_entered"]
+[connection signal="body_entered" from="Carapace" to="." method="_on_carapace_body_entered"]
+[connection signal="timeout" from="TimerIntouchable" to="." method="_on_timer_intouchable_timeout"]

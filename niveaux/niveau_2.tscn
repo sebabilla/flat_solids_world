@@ -1,0 +1,50 @@
+[gd_scene load_steps=7 format=3 uid="uid://b4ppf2k710tw0"]
+
+[ext_resource type="PackedScene" uid="uid://bl7hwqqphmig5" path="res://niveaux/niveau_modele.tscn" id="1_nu0qn"]
+[ext_resource type="Script" path="res://niveaux/niveau_2.gd" id="2_hamin"]
+[ext_resource type="PackedScene" uid="uid://w4w2iywrlmiq" path="res://objets/fragment.tscn" id="2_xkisi"]
+[ext_resource type="PackedScene" uid="uid://d16wneryh8rqv" path="res://ennemis/fleur_explosive.tscn" id="3_wsjfv"]
+[ext_resource type="PackedScene" uid="uid://d1pqoivkwwluy" path="res://ennemis/escargot.tscn" id="4_dutkd"]
+[ext_resource type="PackedScene" uid="uid://ltbiabiredt5" path="res://ennemis/abeille.tscn" id="5_yioo1"]
+
+[node name="Niveau2" instance=ExtResource("1_nu0qn")]
+script = ExtResource("2_hamin")
+
+[node name="TileMap" parent="." index="0"]
+layer_0/tile_data = PackedInt32Array(0, 196609, 268435456, 1, 131073, 0, 2, 65537, 268435457, 3, 262145, 1, -65531, 196609, 1, -65530, 1, 0, -131065, 262145, 1, -131063, 0, 1, 65536, 65539, 0, 65537, 65539, 0, 65538, 65539, 0, 65539, 65539, 0, 65540, 65539, 0, 65541, 65539, 0, 65542, 65539, 0, 65543, 65539, 0, 65544, 65539, 0, 65545, 65539, 0, 65546, 65539, 0, 65547, 65539, 0, 65548, 65539, 0, 6, 196610, 268435457, 5, 262146, 0, -65529, 196610, 0, 7, 65538, 1, -131060, 65538, 0, -65524, 196610, 1, 12, 131074, 0, -131061, 131073, 0, -65525, 262146, 268435457, 11, 196610, 1, -196596, 2, 268435456, -262132, 1, 268435456, -196595, 3, 0, -131059, 3, 0, -65523, 3, 0, 13, 3, 0, 65549, 65539, 0, -262131, 65537, 0, 65535, 65537, 1, 131071, 65539, 0)
+
+[node name="Porte" parent="." index="1"]
+position = Vector2(142, -113)
+
+[node name="FleurExplosive" parent="Ennemis" index="0" instance=ExtResource("3_wsjfv")]
+position = Vector2(772, 106)
+
+[node name="FleurExplosive2" parent="Ennemis" index="1" instance=ExtResource("3_wsjfv")]
+position = Vector2(2979, -350)
+
+[node name="Escargot" parent="Ennemis" index="2" instance=ExtResource("4_dutkd")]
+position = Vector2(1531, -148)
+
+[node name="Escargot2" parent="Ennemis" index="3" instance=ExtResource("4_dutkd")]
+position = Vector2(1684, -148)
+
+[node name="Abeille" parent="Ennemis" index="4" instance=ExtResource("5_yioo1")]
+position = Vector2(2018, -496)
+
+[node name="Fragment" parent="Fragments" index="0" instance=ExtResource("2_xkisi")]
+position = Vector2(768, 87)
+
+[node name="Fragment2" parent="Fragments" index="1" instance=ExtResource("2_xkisi")]
+position = Vector2(1616, -193)
+
+[node name="Fragment3" parent="Fragments" index="2" instance=ExtResource("2_xkisi")]
+position = Vector2(2015, -494)
+
+[node name="Fragment4" parent="Fragments" index="3" instance=ExtResource("2_xkisi")]
+position = Vector2(2469, -412)
+
+[node name="Fragment5" parent="Fragments" index="4" instance=ExtResource("2_xkisi")]
+position = Vector2(3041, -410)
+
+[node name="PositionDeDepart" parent="." index="5"]
+position = Vector2(386, -50)
